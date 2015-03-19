@@ -49,12 +49,8 @@ func (b *brainfuck) decPtr() {
 			b.ptr,
 			b.cells[b.ptr]))
 	} else {
-		n := len(b.cells)
-		b.log(fmt.Sprintf("*expanding %d -> %d [%d]",
-			n,
-			n+1,
-			cap(b.cells)))
-		b.cells = append(make([]byte, 1), b.cells...)
+		b.log(fmt.Sprintf("*Attempting to go past tape\n\t[inst: %d]",
+			b.inst))
 	}
 }
 
@@ -81,7 +77,8 @@ func (b *brainfuck) output() byte {
 	b.log(fmt.Sprintf("output: [cell: %d] [val: %v] [ascii: %s]",
 		b.ptr,
 		b.cells[b.ptr],
-		string(b.cells[b.ptr])))
+		string(b.cells[b.ptr]),
+	))
 	return b.cells[b.ptr]
 }
 
